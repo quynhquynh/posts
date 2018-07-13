@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+*{
+  box-sizing: border-box;
+}
+
+body {
+  width: 65%;
+  margin: 0 auto;
+  font-family: 'Roboto';
+  background: #f5f5f0;
+  letter-spacing: 0.05em;
+}
+
+.post-item > a{
+  display: flex;
+  justify-content: space-around;
+  border: solid 1px black;
+  padding: 10px;
+  margin-bottom: 5px;
+  background: white;
+}
+
+h2{
+  font-weight: 250;
+}
+
+#add-new{
+  font-style: italic;
+} 
+
+#add-new:hover{
+  color: blue;
+}
+
+ul{
+  list-style-type: none;
+  -webkit-padding-start: 0;
+  display: grid;
+  grid-template-columns: repeat( auto-fit, minmax(200px, 1fr) );
+  grid-column-gap: 15px;
+}
+
+
+
+h4{
+  text-transform: capitalize;
+  font-weight: 200;
+}
+
+.posts-category, .category{
+  color: blue;
+  font-size: 0.85em;
+  font-style: italic;
+  margin-top: -15px;
+  cursor: pointer;
+}
+
+
+#post-head{
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+#post-head > div{
+  width: 25%;
+  display: flex;
+}
+
+
+form > div > div > input{
+  width: 100%;
+}
+
+form{
+  margin-top: 15px;
+}
+
+#save-cancel{
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+button{
+  background: white;
+  color: black;
+  border: solid 1px black;
+  border-radius: 4px;
+}
+
+button:hover{
+  background: black;
+  color: white;
+}
+
+#save-cancel > button > a{
+  text-decoration: none;
+  color: black;
+}
+
+#save-cancel > button > a:hover{
+  color: white;
+}
+
+.back{
+  font-style: italic;
+  font-size: 0.85em;
+}
+
+input[type='text']{
+  border: hidden;
+  border-bottom: solid 1px gray;
+  background: transparent;
+}
+
+form > div > div{
+  display: flex;
+  margin-bottom: 25px;
+}
+
+form > div > label{
+  margin-right: 15px;
+  font-size: 0.8em;
+}
+
+textarea{
+  height: 150px;
+  width: 100%;
+  background: transparent;
+  border: solid 1px gray;
+}
+
+form > h4{
+  margin-bottom: 50px;
+  border-bottom: solid 1px black;
+}
+
+
+h3{
+  text-transform: capitalize;
+}
+
+#post-head{
+  margin-bottom: 45px;
+}
+
+#filter-btn{
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+}
+
+#user{
+  display: flex;
+  justify-content: flex-end;
+}
+
+#user > a, #user > button{
+  margin-left: 15px;
+}
+
+#all-sort{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: solid 1px black;
+  margin: 18px 0;
+}
+
+#all-sort > select{
+  height: 30%;
+}
+
+h2{
+  margin: 0;
+}
+
+#signup > h4, #login > h4{
+  margin: 15px 0;
+}
+
+#signup > button, #login > button{
+  margin: 15px 0;
+}
+
+#signup > div > input, #login > div > input{
+  border: solid 1px black;
+  background: white;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"] + label{
+  background: white;
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked + label{
+  background: #00bfff;
+}
+
+#filter-btn > li > label{
+  border: solid 1px black;
+}
+
+.err{
+  font-style: italic;
+  color: red;
+  font-size: 0.7em;
+}
+
+.more{
+  text-align: right;
+  font-style: italic;
+}
+
+.more > a{
+  text-decoration: none;
+}
+
+.post-item{
+  border: solid 1px black; 
+  padding: 15px;
+  background: white;
+  max-width: 250px;
+}
