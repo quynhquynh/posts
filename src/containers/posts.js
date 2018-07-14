@@ -18,39 +18,16 @@ class Posts extends React.Component{
 
     handleCheckbox = (e, cate = '') => {
         let copy_filter = [...this.state.filter]
-        if(!cate){
-            copy_filter.includes(e.target.value) ? copy_filter.splice(copy_filter.indexOf(e.target.value), 1) : copy_filter.push(e.target.value)
-            this.setState({filter: copy_filter})
-        }
-        if(cate){
-            copy_filter.includes(cate) ? copy_filter.splice(copy_filter.indexOf(cate), 1) : copy_filter.push(cate)
-            this.setState({filter: copy_filter})
-        }
+        !cate 
+            ? copy_filter.includes(e.target.value) ? copy_filter.splice(copy_filter.indexOf(e.target.value), 1) : copy_filter.push(e.target.value)
+            : copy_filter.includes(cate) ? copy_filter.splice(copy_filter.indexOf(cate), 1) : copy_filter.push(cate)
+        this.setState({filter: copy_filter})
     }
 
     handleSort = e => {
         this.setState({sortType: e.target.value})
     }
-
-    // shouldComponentUpdate(nextProps, nextState){
-        
-    //     let {posts} = this.props
-    //     let {filter} = nextState
-    //     const locked = posts
-    //     for(let item of filter){
-    //         console.log(item)
-    //         if(item === filter[0]) posts = [...locked.filter(post => post.category === item)]
-    //         if(item !== filter[0]){
-    //             const pre_post = posts.slice()
-    //             posts = [...posts, ...locked.filter(post => post.category === item)]
-    //             console.log('posts', posts)
-    //             console.log('pre_post', pre_post)
-                
-    //         } 
-    //     }
        
-    //     return true
-    // }
 
     filterPosts = posts => {
         let {filter} = this.state
@@ -59,35 +36,28 @@ class Posts extends React.Component{
             if(item === filter[0]) posts = [...locked.filter(post => post.category === item)]
             if(item !== filter[0]) posts = [...posts, ...locked.filter(post => post.category === item)]
         }
-        console.log('func', posts)
         return posts
     }
 
 
     sortingPosts = (sortType, posts) => {
         switch(sortType){
-            case 'date-des':
-                return  posts.sort((a, b) => {
-                            let aa = Number(a.date.split('.').reverse().join(''))
-                            let bb = Number(b.date.split('.').reverse().join(''))
-                            return bb - aa
-                        }) 
-            case 'date-asc': 
-                return posts.sort((a, b) => {
-                            let aa = Number(a.date.split('.').reverse().join(''))
-                            let bb = Number(b.date.split('.').reverse().join(''))
-                            return aa - bb
-                        }) 
-            case 'author-asc':
-                return posts.sort((aa, bb) => aa.author < bb.author ? -1 : 1)
-            case 'author-des':
-                return posts.sort((aa, bb) => aa.author < bb.author ? 1 : -1)
-            default: 
-                return posts.sort((a, b) => {
-                            let aa = Number(a.date.split('.').reverse().join(''))
-                            let bb = Number(b.date.split('.').reverse().join(''))
-                            return bb - aa
-                        }) 
+        case 'date-asc': 
+            return posts.sort((a, b) => {
+                let aa = Number(a.date.split('.').reverse().join(''))
+                let bb = Number(b.date.split('.').reverse().join(''))
+                return aa - bb
+            }) 
+        case 'author-asc':
+            return posts.sort((aa, bb) => aa.author < bb.author ? -1 : 1)
+        case 'author-des':
+            return posts.sort((aa, bb) => aa.author < bb.author ? 1 : -1)
+        default: 
+            return posts.sort((a, b) => {
+                let aa = Number(a.date.split('.').reverse().join(''))
+                let bb = Number(b.date.split('.').reverse().join(''))
+                return bb - aa
+            }) 
         }
     }
 
@@ -114,12 +84,12 @@ class Posts extends React.Component{
                 </div>
                 <ul id='filter-btn'>
                     {radio.map((item, i) => <Checkbox 
-                                                    key={i} 
-                                                    id={item.id} 
-                                                    name={item.name}
-                                                    label={item.label} 
-                                                    checked={filter.includes(item.id)} 
-                                                    onChange={this.handleCheckbox} />)}
+                        key={i} 
+                        id={item.id} 
+                        name={item.name}
+                        label={item.label} 
+                        checked={filter.includes(item.id)} 
+                        onChange={this.handleCheckbox} />)}
                 </ul>
                 <ul className='posts-list'>
                     {posts.map(post => {

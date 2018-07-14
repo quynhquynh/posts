@@ -4,6 +4,7 @@ export const UPDATE_POST = 'UPDATE_POST'
 export const SIGNUP = 'SIGNUP'
 export const LOGIN = 'LOGIN'
 export const LOGOUT = 'LOGOUT'
+export const GENERATE_DATE = 'GENERATE_DATE'
 
 
 export function deletePost(id, callback){
@@ -52,5 +53,19 @@ export const login = (info, callback) => {
 export const logout = () => {
     return {
         type: LOGOUT
+    }
+}
+
+
+export const generateDate = () => {
+    const [day, month, year] = [
+        new Date().getDate(),
+        new Date().getMonth() + 1,
+        new Date().getFullYear()
+    ]
+    const date = `${day > 9 ? day : `0${day}`}.${month > 9 ? month : `0${month}`}.${year}`
+    return {
+        type: GENERATE_DATE,
+        payload: date
     }
 }

@@ -8,7 +8,7 @@ const Form = ({props, handleChange}) => (
         </div>
         <div>
             <label htmlFor='category'>Category: </label>
-            {/* <input id='category' name='category' type='text' value={props.category} onChange={e => handleChange(e, 'category')} /> */}
+            <input id='category' name='category' type='text' value={props.category} onChange={e => handleChange(e, 'category')} />
             <select value={props.category} onChange={e => handleChange(e, 'category')}>
                 <option value='culture'>Culture</option>
                 <option value='lifestyle'>Lifestyle</option>

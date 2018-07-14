@@ -1,27 +1,17 @@
 import React from 'react'
-import { addPost } from '../actions'
+import { addPost, generateDate } from '../actions'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Field, reduxForm } from 'redux-form'
 
 class PostNew extends React.Component{
-    generateDate = () => {
-        const [day, month, year] = [
-            new Date().getDate(),
-            new Date().getMonth() + 1,
-            new Date().getFullYear()
-        ]
-        const date = `${day > 9 ? day : `0${day}`}.${month > 9 ? month : `0${month}`}.${year}`
-        return date
-    }
-    //title, category, content
-    //id, date, author
     onSubmit = values => {
-        let copy_values = {...values}
-        copy_values.id = this.props.keys[this.props.keys.length -1] + 1 
-        copy_values.author = this.props.login_u.username
-        copy_values.date = this.generateDate()
-        this.props.addPost(copy_values, () => {
+        const {keys, login_u, generateDate, addPost} = this.props
+        const copy_values = {...values}
+        copy_values.id = Number(keys[keys.length -1]) + 1 
+        copy_values.author = login_u.username
+        copy_values.date = generateDate().payload
+        addPost(copy_values, () => {
             this.props.history.push('/')
         })
     }
@@ -66,7 +56,6 @@ class PostNew extends React.Component{
 
     render(){
         const { handleSubmit } = this.props
-        console.log(this.props)
       
         return(
             <form onSubmit={handleSubmit(this.onSubmit)}>
@@ -90,9 +79,9 @@ class PostNew extends React.Component{
 
 
 
-const mapStateToProps = state => ({
-    keys: Object.keys(state.posts),
-    login_u: state.login
+const mapStateToProps = ({posts, login}) => ({
+    keys: Object.keys(posts),
+    login_u: login
 })
     
 const validate = values => {
@@ -111,5 +100,5 @@ export default reduxForm({
     validate,
     form: 'NewPost'
 })(
-    connect(mapStateToProps, { addPost })(PostNew)
+    connect(mapStateToProps, { addPost, generateDate })(PostNew)
 )

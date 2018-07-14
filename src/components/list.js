@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom'
 
 
 class List extends React.PureComponent{
-
-
-
     render(){
         const {id, title, category, handleClick, author, isEdit, date, content} = this.props
         return(
@@ -19,7 +16,6 @@ class List extends React.PureComponent{
                 <p className='posts-content'>{content.slice(0, 50)}...</p>
                 <div className='more'><Link to={`/posts/${id}`}>more</Link></div>
             </div>
-            
         )
     }
 }

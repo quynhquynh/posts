@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { deletePost, updatePost } from '../actions'
+import { deletePost, updatePost, generateDate } from '../actions'
 import { Field, reduxForm, getFormSyncErrors } from 'redux-form'
 
 
@@ -12,18 +12,6 @@ class Post extends React.Component{
             isEdit: false
         }
     }
-
- 
-    generateDate = () => {
-        const [day, month, year] = [
-            new Date().getDate(),
-            new Date().getMonth() + 1,
-            new Date().getFullYear()
-        ]
-        const date = `${day > 9 ? day : `0${day}`}.${month > 9 ? month : `0${month}`}.${year}`
-        return date
-    }
-
 
     handleDelete = () => {
         const id = Number(this.props.match.params.id)
@@ -41,19 +29,19 @@ class Post extends React.Component{
     }
 
     onSubmit = values => {
+        const {match, login_u, generateDate, updatePost} = this.props
         let copy_values = {...values}
-        copy_values.id = Number(this.props.match.params.id)
-        copy_values.author = this.props.login_u.username
-        copy_values.date = this.generateDate()
+        copy_values.id = Number(match.params.id)
+        copy_values.author = login_u.username
+        copy_values.date = generateDate().payload
         copy_values.isEdit = true
-        this.props.updatePost(copy_values)
+        updatePost(copy_values)
         this.setState({
             isEdit: false
         })
     }
 
     renderInput = props => {
-        console.log(props)
         const {meta: {touched, error}} = props
         return(
             <div>
@@ -90,7 +78,7 @@ class Post extends React.Component{
    
 
     render(){
-        const { title, category, author, date, content } = this.props.post
+        const { title, category, author, isEdit, date, content } = this.props.post
         if(!this.props.post){
             return <div>Loading...</div>
         }
@@ -114,7 +102,7 @@ class Post extends React.Component{
                         <h3 className='title'>{title}</h3>
                         <p className='category'>{category}</p>
                         <p className='author'>By {author}</p>
-                        <p className='date'>Created: {date}</p>
+                        <p className='date'>{isEdit ? `Edited: ${date}` : `Created: ${date}`}</p>
                         <p>{content}</p>
                     </div>
                 </div>
@@ -182,6 +170,6 @@ const ReduxFormComponent = reduxForm({
     form: 'EditPost'
 })(Post)
 
-export default connect(mapStateToProps, { deletePost, updatePost })(ReduxFormComponent)
+export default connect(mapStateToProps, { deletePost, updatePost, generateDate })(ReduxFormComponent)
 
 //order of redux-form and connect matters if reduxForm needs to use any key (like initialValues), post and login_u no need
