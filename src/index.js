@@ -20,10 +20,10 @@ ReactDOM.render(
     <BrowserRouter>
       <div>
         <Switch>
-          <Route exact path="/" component={Posts} />
+          <Route exact path="/posts" component={Posts} />
           <Route exact path="/posts/new" component={PostNew} />
           <Route exact path="/posts/:id" component={Post} />
-          <Redirect exact from="/posts" to="/" />
+          <Redirect exact from="/" to="/posts" />
         </Switch>
       </div>
     </BrowserRouter>
