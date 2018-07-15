@@ -6,6 +6,8 @@ import Checkbox from "../components/checkbox";
 import UserAction from "../containers/user-action";
 import List from "../components/list";
 
+console.log("testing");
+
 class Posts extends React.Component {
   constructor(props) {
     super(props);
