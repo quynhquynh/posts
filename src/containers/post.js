@@ -1,33 +1,33 @@
 //without redux-form
-import React from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { deletePost, updatePost } from '../actions'
-import Form from '../components/form'
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { deletePost, updatePost } from "../actions";
+import Form from "../components/form";
 
 class Post extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       id: 0,
-      title: '',
-      category: '',
-      date: '',
-      content: '',
+      title: "",
+      category: "",
+      date: "",
+      content: "",
       isEdit: false
-    }
+    };
   }
 
   componentDidMount() {
-    const { id } = this.props.match.params
-    const { title, category, date, content } = this.props.post[0]
+    const { id } = this.props.match.params;
+    const { title, category, date, content } = this.props.post[0];
     this.setState({
       id: Number(id),
       title,
       category,
       date,
       content
-    })
+    });
   }
 
   generateDate = () => {
@@ -35,50 +35,52 @@ class Post extends React.Component {
       new Date().getDate(),
       new Date().getMonth() + 1,
       new Date().getFullYear()
-    ]
-    const date = `${day > 9 ? day : `0${day}`}.${month > 9 ? month : `0${month}`}.${year}`
-    return date
-  }
+    ];
+    const date = `${day > 9 ? day : `0${day}`}.${
+      month > 9 ? month : `0${month}`
+    }.${year}`;
+    return date;
+  };
 
   handleDelete = () => {
-    const { id } = this.state
+    const { id } = this.state;
     this.props.deletePost(id, () => {
-      this.props.history.push('/')
-    })
-  }
+      this.props.history.push("/");
+    });
+  };
 
   handleEdit = () => {
-    this.setState({ isEdit: true })
-  }
+    this.setState({ isEdit: true });
+  };
 
   handleCancel = () => {
-    this.setState({ isEdit: false })
-  }
+    this.setState({ isEdit: false });
+  };
 
   handleChange = (e, type) => {
     this.setState({
       [type]: e.target.value,
       date: this.generateDate()
-    })
-  }
+    });
+  };
 
   handleSave = () => {
-    this.props.updatePost(this.state)
+    this.props.updatePost(this.state);
     this.setState({
       id: 0,
-      title: '',
-      category: '',
-      content: '',
+      title: "",
+      category: "",
+      content: "",
       isEdit: false
-    })
-  }
+    });
+  };
 
   render() {
-    const { title, category, author, date, content } = this.props.post[0]
+    const { title, category, author, date, content } = this.props.post[0];
     if (!this.props.post) {
-      return <div>Loading...</div>
+      return <div>Loading...</div>;
     }
-    const login_user = this.props.login_u.username
+    const login_user = this.props.login_u.username;
 
     const memberAction = () => (
       <div>
@@ -89,7 +91,7 @@ class Post extends React.Component {
           Edit Post
         </button>
       </div>
-    )
+    );
 
     const renderNormal = () => {
       return (
@@ -108,8 +110,8 @@ class Post extends React.Component {
             <p>{content}</p>
           </div>
         </div>
-      )
-    }
+      );
+    };
 
     const renderEdit = () => {
       return (
@@ -126,23 +128,23 @@ class Post extends React.Component {
             </div>
           </form>
         </div>
-      )
-    }
+      );
+    };
 
-    return this.state.isEdit ? renderEdit() : renderNormal()
+    return this.state.isEdit ? renderEdit() : renderNormal();
   }
 }
 
 const mapStateToProps = (state, props) => {
-  const id = Number(props.match.params.id)
-  const posts = Object.values(state.posts)
+  const id = Number(props.match.params.id);
+  const posts = Object.values(state.posts);
   return {
     post: posts.filter(post => post.id === id),
     login_u: state.login
-  }
-}
+  };
+};
 
 export default connect(
   mapStateToProps,
   { deletePost, updatePost }
-)(Post)
+)(Post);

@@ -1,98 +1,100 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { signup, login, logout } from '../actions'
-import Checkbox from '../components/checkbox'
-import UserAction from '../containers/user-action'
-import List from '../components/list'
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { signup, login, logout } from "../actions";
+import Checkbox from "../components/checkbox";
+import UserAction from "../containers/user-action";
+import List from "../components/list";
 
 class Posts extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       filter: [],
-      sortType: 'date-des'
-    }
+      sortType: "date-des"
+    };
   }
 
-  handleCheckbox = (e, cate = '') => {
-    let copy_filter = [...this.state.filter]
+  handleCheckbox = (e, cate = "") => {
+    let copy_filter = [...this.state.filter];
     !cate
       ? copy_filter.includes(e.target.value)
         ? copy_filter.splice(copy_filter.indexOf(e.target.value), 1)
         : copy_filter.push(e.target.value)
       : copy_filter.includes(cate)
         ? copy_filter.splice(copy_filter.indexOf(cate), 1)
-        : copy_filter.push(cate)
-    this.setState({ filter: copy_filter })
-  }
+        : copy_filter.push(cate);
+    this.setState({ filter: copy_filter });
+  };
 
   handleSort = e => {
-    this.setState({ sortType: e.target.value })
-  }
+    this.setState({ sortType: e.target.value });
+  };
 
   filterPosts = posts => {
-    let { filter } = this.state
-    const locked = posts
+    let { filter } = this.state;
+    const locked = posts;
     for (let item of filter) {
-      if (item === filter[0]) posts = [...locked.filter(post => post.category === item)]
-      if (item !== filter[0]) posts = [...posts, ...locked.filter(post => post.category === item)]
+      if (item === filter[0])
+        posts = [...locked.filter(post => post.category === item)];
+      if (item !== filter[0])
+        posts = [...posts, ...locked.filter(post => post.category === item)];
     }
-    return posts
-  }
+    return posts;
+  };
 
   sortingPosts = (sortType, posts) => {
     switch (sortType) {
-      case 'date-asc':
+      case "date-asc":
         return posts.sort((a, b) => {
           let aa = Number(
             a.date
-              .split('.')
+              .split(".")
               .reverse()
-              .join('')
-          )
+              .join("")
+          );
           let bb = Number(
             b.date
-              .split('.')
+              .split(".")
               .reverse()
-              .join('')
-          )
-          return aa - bb
-        })
-      case 'author-asc':
-        return posts.sort((aa, bb) => (aa.author < bb.author ? -1 : 1))
-      case 'author-des':
-        return posts.sort((aa, bb) => (aa.author < bb.author ? 1 : -1))
+              .join("")
+          );
+          return aa - bb;
+        });
+      case "author-asc":
+        return posts.sort((aa, bb) => (aa.author < bb.author ? -1 : 1));
+      case "author-des":
+        return posts.sort((aa, bb) => (aa.author < bb.author ? 1 : -1));
       default:
         return posts.sort((a, b) => {
           let aa = Number(
             a.date
-              .split('.')
+              .split(".")
               .reverse()
-              .join('')
-          )
+              .join("")
+          );
           let bb = Number(
             b.date
-              .split('.')
+              .split(".")
               .reverse()
-              .join('')
-          )
-          return bb - aa
-        })
+              .join("")
+          );
+          return bb - aa;
+        });
     }
-  }
+  };
 
   render() {
-    let { posts, login_u } = { ...this.props }
-    let { filter, sortType } = this.state
+    let { posts, login_u } = { ...this.props };
+    let { filter, sortType } = this.state;
 
-    posts = this.sortingPosts(sortType, this.filterPosts(posts))
+    posts = this.sortingPosts(sortType, this.filterPosts(posts));
 
     const radio = [
-      { id: 'culture', name: 'cate', label: 'Culture' },
-      { id: 'lifestyle', name: 'cate', label: 'Lifestyle' },
-      { id: 'tech', name: 'cate', label: 'Tech' }
-    ]
+      { id: "culture", name: "cate", label: "Culture" },
+      { id: "lifestyle", name: "cate", label: "Lifestyle" },
+      { id: "tech", name: "cate", label: "Tech" }
+    ];
 
     return (
       <div className="posts">
@@ -108,7 +110,7 @@ class Posts extends React.Component {
                 </Link>
               </span>
             ) : (
-              ''
+              ""
             )}
           </h2>
           <select value={this.state.sortType} onChange={this.handleSort}>
@@ -145,23 +147,23 @@ class Posts extends React.Component {
                   isEdit={post.isEdit}
                 />
               </li>
-            )
+            );
           })}
         </ul>
       </div>
-    )
+    );
   }
 }
 
 const mapStateToProps = ({ posts, login }) => {
-  const values = Object.values(posts)
+  const values = Object.values(posts);
   return {
     posts: values,
     login_u: login
-  }
-}
+  };
+};
 
 export default connect(
   mapStateToProps,
   { signup, login, logout }
-)(Posts)
+)(Posts);

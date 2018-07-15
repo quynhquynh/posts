@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const Form = ({ props, handleChange }) => (
   <div>
@@ -9,7 +9,7 @@ const Form = ({ props, handleChange }) => (
         name="title"
         type="text"
         value={props.title}
-        onChange={e => handleChange(e, 'title')}
+        onChange={e => handleChange(e, "title")}
       />
     </div>
     <div>
@@ -19,9 +19,12 @@ const Form = ({ props, handleChange }) => (
         name="category"
         type="text"
         value={props.category}
-        onChange={e => handleChange(e, 'category')}
+        onChange={e => handleChange(e, "category")}
       />
-      <select value={props.category} onChange={e => handleChange(e, 'category')}>
+      <select
+        value={props.category}
+        onChange={e => handleChange(e, "category")}
+      >
         <option value="culture">Culture</option>
         <option value="lifestyle">Lifestyle</option>
         <option value="tech">Tech</option>
@@ -33,11 +36,11 @@ const Form = ({ props, handleChange }) => (
         id="content"
         name="content"
         value={props.content}
-        onChange={e => handleChange(e, 'content')}
+        onChange={e => handleChange(e, "content")}
         type="text"
       />
     </div>
   </div>
-)
+);
 
-export default Form
+export default Form;
