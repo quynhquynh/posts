@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
-*{
+* {
   box-sizing: border-box;
 }
 
@@ -12,7 +12,7 @@ body {
   letter-spacing: 0.05em;
 }
 
-.post-item > a{
+.post-item > a {
   display: flex;
   justify-content: space-around;
   border: solid 1px black;
@@ -21,34 +21,33 @@ body {
   background: white;
 }
 
-h2{
+h2 {
   font-weight: 250;
 }
 
-#add-new{
+#add-new {
   font-style: italic;
-} 
+}
 
-#add-new:hover{
+#add-new:hover {
   color: blue;
 }
 
-ul{
+ul {
   list-style-type: none;
   -webkit-padding-start: 0;
   display: grid;
-  grid-template-columns: repeat( auto-fit, minmax(200px, 1fr) );
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-column-gap: 15px;
 }
 
-
-
-h4{
+h4 {
   text-transform: capitalize;
   font-weight: 200;
 }
 
-.posts-category, .category{
+.posts-category,
+.category {
   color: blue;
   font-size: 0.85em;
   font-style: italic;
@@ -56,173 +55,174 @@ h4{
   cursor: pointer;
 }
 
-
-#post-head{
+#post-head {
   display: flex;
   justify-content: space-between;
   margin: 20px 0;
 }
 
-#post-head > div{
+#post-head > div {
   width: 25%;
   display: flex;
 }
 
-
-form > div > div > input{
+form > div > div > input {
   width: 100%;
 }
 
-form{
+form {
   margin-top: 15px;
 }
 
-#save-cancel{
+#save-cancel {
   margin-top: 15px;
   display: flex;
   justify-content: flex-end;
 }
 
-button{
+button {
   background: white;
   color: black;
   border: solid 1px black;
   border-radius: 4px;
 }
 
-button:hover{
+button:hover {
   background: black;
   color: white;
 }
 
-#save-cancel > button > a{
+#save-cancel > button > a {
   text-decoration: none;
   color: black;
 }
 
-#save-cancel > button > a:hover{
+#save-cancel > button > a:hover {
   color: white;
 }
 
-.back{
+.back {
   font-style: italic;
   font-size: 0.85em;
 }
 
-input[type='text']{
+input[type='text'] {
   border: hidden;
   border-bottom: solid 1px gray;
   background: transparent;
 }
 
-form > div > div{
+form > div > div {
   display: flex;
   margin-bottom: 25px;
 }
 
-form > div > label{
+form > div > label {
   margin-right: 15px;
   font-size: 0.8em;
 }
 
-textarea{
+textarea {
   height: 150px;
   width: 100%;
   background: transparent;
   border: solid 1px gray;
 }
 
-form > h4{
+form > h4 {
   margin-bottom: 50px;
   border-bottom: solid 1px black;
 }
 
-
-h3{
+h3 {
   text-transform: capitalize;
 }
 
-#post-head{
+#post-head {
   margin-bottom: 45px;
 }
 
-#filter-btn{
+#filter-btn {
   width: 30%;
   display: flex;
   justify-content: space-between;
 }
 
-#user{
+#user {
   display: flex;
   justify-content: flex-end;
 }
 
-#user > a, #user > button{
+#user > a,
+#user > button {
   margin-left: 15px;
 }
 
-#all-sort{
+#all-sort {
   display: flex;
   justify-content: space-between;
   border-bottom: solid 1px black;
   margin: 18px 0;
 }
 
-#all-sort > select{
+#all-sort > select {
   height: 30%;
 }
 
-h2{
+h2 {
   margin: 0;
 }
 
-#signup > h4, #login > h4{
+#signup > h4,
+#login > h4 {
   margin: 15px 0;
 }
 
-#signup > button, #login > button{
+#signup > button,
+#login > button {
   margin: 15px 0;
 }
 
-#signup > div > input, #login > div > input{
+#signup > div > input,
+#login > div > input {
   border: solid 1px black;
   background: white;
 }
 
-input[type="checkbox"] {
+input[type='checkbox'] {
   display: none;
 }
 
-input[type="checkbox"] + label{
+input[type='checkbox'] + label {
   background: white;
   cursor: pointer;
 }
 
-input[type="checkbox"]:checked + label{
+input[type='checkbox']:checked + label {
   background: #00bfff;
 }
 
-#filter-btn > li > label{
+#filter-btn > li > label {
   border: solid 1px black;
 }
 
-.err{
+.err {
   font-style: italic;
   color: red;
   font-size: 0.7em;
 }
 
-.more{
+.more {
   text-align: right;
   font-style: italic;
 }
 
-.more > a{
+.more > a {
   text-decoration: none;
 }
 
-.post-item{
-  border: solid 1px black; 
+.post-item {
+  border: solid 1px black;
   padding: 15px;
   background: white;
   max-width: 250px;
